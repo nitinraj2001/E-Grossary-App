@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,20 +23,27 @@ public class User{
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private Long userId;
 	    
+		@NotEmpty(message="usename is required")
 		private String username;
 		
+		@NotEmpty(message="email is required")
 		private String email;
 		
+		@NotEmpty(message="valid password is required")
 		private String password;
 		
+		@NotEmpty(message="firstname is required")
 		private String firstname;
 		
+		@NotEmpty(message="lastname is required")
 		private String lastname;
 		
+		@NotEmpty(message="phonenumber is required")
 		private String phonenumber;
 		
-		private boolean enabled=true;
+		private boolean enabled=false;
 		
+		@NotEmpty(message="address is required is required")
 		private String address;
 		
 		public String getAddress() {
