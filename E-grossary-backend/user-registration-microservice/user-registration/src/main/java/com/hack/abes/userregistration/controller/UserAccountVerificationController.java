@@ -10,6 +10,7 @@ import com.hack.abes.userregistration.model.User;
 import com.hack.abes.userregistration.model.VerificationToken;
 import com.hack.abes.userregistration.repository.UserRepository;
 import com.hack.abes.userregistration.repository.VerificationTokenRepository;
+import com.hack.abes.userregistration.service.UserService;
 
 @Controller
 public class UserAccountVerificationController {
@@ -20,6 +21,9 @@ public class UserAccountVerificationController {
 	@Autowired
 	private UserRepository theUserRepository;
 	
+	@Autowired
+	private UserService theUserService;
+	
 	@RequestMapping(path = "/accountVerification/{token}/{id}", method = RequestMethod.GET)
 	public String getAccountVerified(@PathVariable String token, @PathVariable Long id) {
 		
@@ -28,10 +32,15 @@ public class UserAccountVerificationController {
 		VerificationToken theVerificationToken=this.verificationTokenRepo.findByUser(theUser);
 		
 		if(token.equalsIgnoreCase(theVerificationToken.getToken())) {
+			
+			System.out.println("active status of "+theUser.getUsername()+"is "+theUser.isEnabled());
+			theUser.setEnabled(true);
+			this.theUserService.updateUser(theUser);
+			System.out.println("active status of "+theUser.getUsername()+"is "+theUser.isEnabled());
 			return "AccountVerificationSuccess";
 		}
 		
-	   return "";
+	   return "AccountVerificationFailed";
 	}
 
 }

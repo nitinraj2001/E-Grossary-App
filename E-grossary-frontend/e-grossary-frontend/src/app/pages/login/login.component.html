@@ -3,20 +3,20 @@
           <div class="login-form">      
             <h1 class="login-title">Login</h1>
             <div class="form-wrapper">
-            <form>
+            <form (ngSubmit)="login()">
               <div class="input-wrapper">
                   <label class="label" for="email"><b>UserName</b></label>
-                  <input class="input" type="text" id="email" name="email">
+                  <input class="input" type="text" id="username" name="username" [(ngModel)]="user.username" required>
               </div>
               <div class="input-wrapper">
                    <label class="label" for="password"><b>Password</b></label>
-                   <input class="input" type="password" id="password" name="password">
+                   <input class="input" type="password" id="password" name="password" [(ngModel)]="user.password" required>
                </div>
                <div class="action-help">
                   <a class="help-link" href="#"><b>Forgot your password?</b></a>
                 </div>
                 <button mat-raised-button color="primary">Login</button>
-                <button style="margin-left:5%;" mat-raised-button color="accent">Reset</button>
+                <button style="margin-left:5%;" mat-raised-button color="accent" type="reset">Reset</button>
                 </form>
               </div>
 

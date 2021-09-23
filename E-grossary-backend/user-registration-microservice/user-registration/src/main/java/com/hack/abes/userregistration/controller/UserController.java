@@ -3,7 +3,10 @@ package com.hack.abes.userregistration.controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,18 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hack.abes.userregistration.Exception.UserNotAuthenticated;
 import com.hack.abes.userregistration.Exception.UserWithSameUsernameFoundException;
+import com.hack.abes.userregistration.model.AuthenticateUserRequest;
 import com.hack.abes.userregistration.model.Role;
 import com.hack.abes.userregistration.model.User;
 import com.hack.abes.userregistration.model.UserRole;
+import com.hack.abes.userregistration.repository.UserRepository;
 import com.hack.abes.userregistration.service.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository theUserRepository;
 	
 	@PostMapping("/")
 	public User createNewUser(@RequestBody User theuser) throws Exception {
@@ -57,6 +67,17 @@ public class UserController {
 	public String deleteUser(@PathVariable("userId")Long userId) {
 		this.userService.deleteUser(userId);
 		return "user with userid "+userId+" is deleted successfully";
+	}
+	
+	@PostMapping("/authenticate")
+	public ResponseEntity<?> authenticateUser(@RequestBody AuthenticateUserRequest request ) throws UserNotAuthenticated{
+		User theUser=this.theUserRepository.findByUsername(request.getUsername());
+		if(theUser!=null) {
+			if(request.getPassword().contentEquals(theUser.getPassword())) {
+				return ResponseEntity.ok("you are authenticated and can access our functionalities!!");
+			}
+		}
+		throw new UserNotAuthenticated(theUser);
 	}
 
 }
