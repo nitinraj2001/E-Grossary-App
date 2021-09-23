@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 				
 				mailMessage.setSubject("Activate Account at My Super Market App");
 				
-				mailMessage.setText("To activate your account please click here :" + "http://localhost:9090/user/accountVerification?token=" +token );
+				mailMessage.setText("To activate your account please click here :" + "http://localhost:9090/accountVerification/"+token+"/"+user.getUserId() );
 				
 				try {
 				emailService.sendEmail(mailMessage);
