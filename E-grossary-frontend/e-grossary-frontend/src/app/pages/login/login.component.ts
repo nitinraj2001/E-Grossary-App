@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   user:any={"username":'',"password":""};
 
+  theUser:any={"username":"","firstname":"","lastname":"","email":"","phonenumber":"","password":"","address":""};
+
 
   constructor(private snackbar:MatSnackBar,private loginService:LoginService) { }
 
@@ -29,16 +31,31 @@ export class LoginComponent implements OnInit {
       this.snackbar.open("Password can't be empty or null","ok",{duration:3000});
       return;
     }
-    this.loginService.login(this.user).subscribe(
+    
+    this.loginService.fetchUserByUsername(this.user.username).subscribe(
       (data)=>{
-        console.log(data);
-       Swal.fire("success","You have successfully login","success");
-      },
-      (error)=>{
-        console.log(error);
-        Swal.fire("error","You can't logged In try again!!","error");
+        this.theUser=JSON.stringify(data);
+        this.theUser=JSON.parse(this.theUser);
+        console.log(this.theUser);
+        console.log("status of user account is:" +this.theUser.enabled);
+        if(!this.theUser.enabled){
+          Swal.fire("error","Sorry!! First verify your account","error");
+        }
+        else{
+          this.loginService.login(this.user).subscribe(
+            (data)=>{
+              console.log(data);
+             Swal.fire("success","You have successfully login","success");
+            },
+            (error)=>{
+              console.log(error);
+              Swal.fire("error","You can't logged In try again!!","error");
+            }
+          )
+        }
       }
     )
+   
   }
 
 }

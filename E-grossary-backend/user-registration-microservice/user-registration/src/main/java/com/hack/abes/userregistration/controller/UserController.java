@@ -2,8 +2,6 @@ package com.hack.abes.userregistration.controller;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hack.abes.userregistration.Exception.UserNotAuthenticated;
+import com.hack.abes.userregistration.Exception.UserNotFoundException;
 import com.hack.abes.userregistration.Exception.UserWithSameUsernameFoundException;
 import com.hack.abes.userregistration.model.AuthenticateUserRequest;
 import com.hack.abes.userregistration.model.Role;
@@ -78,6 +76,19 @@ public class UserController {
 			}
 		}
 		throw new UserNotAuthenticated(theUser);
+	}
+	
+	@GetMapping("/fetchByUsername/{username}")
+	public ResponseEntity<User> getUserByUserName(@PathVariable("username") String username) throws UserNotFoundException {
+		
+		User theUser=this.userService.findUser(username);
+		
+		if(theUser==null) {
+			throw new UserNotFoundException(username);
+		}
+		
+		return ResponseEntity.ok(theUser);
+		
 	}
 
 }

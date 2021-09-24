@@ -12,4 +12,7 @@ export class LoginService {
   public login(user:any){
     return this.http.post(`${baseUrl}/user/authenticate`,user,{responseType: 'text'});
   }
+  public fetchUserByUsername(username:any){
+   return this.http.get(`${baseUrl}/user/fetchByUsername/${username}`);
+  }
 }
