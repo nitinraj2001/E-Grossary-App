@@ -16,6 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdmindashboardComponent } from './pages/admin/admindashboard/admindashboard.component';
+import { UserdashboardComponent } from './pages/user/userdashboard/userdashboard.component';
+import { CartStatusComponent } from './pages/user/cart-status/cart-status.component';
+import {MatCardModule} from '@angular/material/card';
+import { ShopRegistrationComponent } from './pages/admin/shop-registration/shop-registration.component';
+import { ViewShopComponent } from './pages/admin/view-shop/view-shop.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     FooterComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdmindashboardComponent,
+    UserdashboardComponent,
+    CartStatusComponent,
+    ShopRegistrationComponent,
+    ViewShopComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule
     
   ],
   providers: [],

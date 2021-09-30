@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <mat-card style="margin-top:8%; margin-right:0%">
+             <h1>Registered Shops</h1>
+             <mat-card-content *ngFor="let theshop of shop">
+                <a style="color:red;" routerLink="/admin-dashboard/view-shop/1">{{theshop.name}}</a>
+             </mat-card-content>
+          </mat-card>
+
+        </div>
+        <div class="col-md-9">
+           <mat-card style="margin-top:2%"><h1 style="color:red">Welcome {{username}} To My Super Market <button (click)="logout()" style="margin-left:20%" mat-raised-button color="primary">Logout</button></h1>
+             
+           </mat-card>
+           <mat-card>
+            <mat-card-content>
+               <b> Register Your Shop here?</b>
+               <button routerLink="/admin-dashboard/shop-register" mat-raised-button color="accent" style="margin-left:2%">Register</button>
+               <button mat-raised-button color="warn" style="margin-left:4%">Cancel Registration</button>
+            </mat-card-content>
+           </mat-card>
+           <mat-card>
+            <router-outlet></router-outlet>
+           </mat-card>
+        
+        </div>
+    </div>
+</div>
+

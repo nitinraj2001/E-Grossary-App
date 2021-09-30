@@ -19,6 +19,7 @@ import com.hack.abes.userregistration.model.AuthenticateUserRequest;
 import com.hack.abes.userregistration.model.Role;
 import com.hack.abes.userregistration.model.User;
 import com.hack.abes.userregistration.model.UserRole;
+import com.hack.abes.userregistration.repository.RoleRepository;
 import com.hack.abes.userregistration.repository.UserRepository;
 import com.hack.abes.userregistration.service.UserService;
 
@@ -32,6 +33,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository theUserRepository;
+	
+	@Autowired
+	private RoleRepository theRoleRepository;
 	
 	@PostMapping("/")
 	public User createNewUser(@RequestBody User theuser) throws Exception {
@@ -89,6 +93,15 @@ public class UserController {
 		
 		return ResponseEntity.ok(theUser);
 		
+	}
+	
+	@GetMapping("/getRole/{id}")
+	public ResponseEntity<Role> getUserRole(@PathVariable Long id) throws UserNotFoundException{
+		Role theRole=this.theRoleRepository.findById(id).get();
+		if(theRole==null) {
+			throw new UserNotFoundException(id.toString());
+		}
+		return ResponseEntity.ok(theRole);
 	}
 
 }
