@@ -12,8 +12,8 @@
           <p><b>Registered Email Id:</b><span style="color:red;">{{shop.email}}</span></p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" style="margin-left:10%">View Products</button>
-          <button mat-raised-button color="warn">Add New Product</button>
+          <button (click)="showProducts()" mat-raised-button color="primary" style="margin-left:10%">View Products Category</button>
+          <button (click)="addCategory()" mat-raised-button color="warn">Add New Category</button>
         </mat-card-actions>
      </mat-card>
     

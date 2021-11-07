@@ -1,6 +1,6 @@
 import { ShopService } from './../../../services/shop.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-shop',
@@ -14,7 +14,7 @@ export class ViewShopComponent implements OnInit {
   base64Data: any;
   retrievedImage: string;
 
-  constructor(private shopService:ShopService,private router:ActivatedRoute) { }
+  constructor(private shopService:ShopService,private router:ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
    this.id=+this.router.snapshot.paramMap.get("id");
@@ -29,6 +29,15 @@ export class ViewShopComponent implements OnInit {
         this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
       }
     )
+  }
+
+  showProducts(){
+    this.route.navigate([`/admin-dashboard/view-shop/${this.id}/view-category`]);
+    
+  }
+
+  addCategory(){
+    this.route.navigate([`/admin-dashboard/shop/${this.id}/add-category`]);
   }
 
 

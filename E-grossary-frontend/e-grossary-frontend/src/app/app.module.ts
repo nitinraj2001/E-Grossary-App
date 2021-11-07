@@ -22,6 +22,9 @@ import { CartStatusComponent } from './pages/user/cart-status/cart-status.compon
 import {MatCardModule} from '@angular/material/card';
 import { ShopRegistrationComponent } from './pages/admin/shop-registration/shop-registration.component';
 import { ViewShopComponent } from './pages/admin/view-shop/view-shop.component';
+import { ListProductsComponent } from './pages/common/list-products/list-products.component';
+import { ListCategoryComponent } from './pages/common/list-category/list-category.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { ViewShopComponent } from './pages/admin/view-shop/view-shop.component';
     CartStatusComponent,
     ShopRegistrationComponent,
     ViewShopComponent,
+    ListProductsComponent,
+    ListCategoryComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,
