@@ -3,6 +3,7 @@ package com.hack.abes.productmicroservice.model;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,13 @@ public class ProductCategory {
 	private Set<Product> products;
 	
 	private Long shopId;
+	
+	private String description;
+	
+	//image bytes can have large lengths so we specify a value
+    //which is more than the default length for picByte column
+	@Column(name = "picByte")
+	private byte[] picByte;
 
 	public Long getId() {
 		return id;
@@ -56,18 +64,41 @@ public class ProductCategory {
 	public void setShopId(Long shopId) {
 		this.shopId = shopId;
 	}
+	
+	
 
-	public ProductCategory(String categoryName, Set<Product> products, Long shopId) {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public byte[] getPicByte() {
+		return picByte;
+	}
+
+	public void setPicByte(byte[] picByte) {
+		this.picByte = picByte;
+	}
+
+	
+	public ProductCategory() {
+		super();
+	}
+
+	public ProductCategory(String categoryName, Set<Product> products, Long shopId, String description,
+			byte[] picByte) {
 		super();
 		this.categoryName = categoryName;
 		this.products = products;
 		this.shopId = shopId;
+		this.description = description;
+		this.picByte = picByte;
 	}
-
-	public ProductCategory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	
 	
 	
 	

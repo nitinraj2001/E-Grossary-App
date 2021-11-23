@@ -29,9 +29,6 @@ public class Product {
 	@JoinColumn(name="category_id", nullable=false)
 	private ProductCategory category;
 	
-	@Column(name="sku")
-	private String sku;
-	
 	@Column(name="name")
 	private String name;
 	
@@ -76,14 +73,6 @@ public class Product {
 
 	public void setCategory(ProductCategory category) {
 		this.category = category;
-	}
-
-	public String getSku() {
-		return sku;
-	}
-
-	public void setSku(String sku) {
-		this.sku = sku;
 	}
 
 	public String getName() {
@@ -163,11 +152,10 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(ProductCategory category, String sku, String name, String description, BigDecimal unitPrice,
-			byte[] picByte, boolean active, int unitsInStock, Date dateCreated, Date lastUpdated, Long shopId) {
+	public Product(ProductCategory category, String name, String description, BigDecimal unitPrice, byte[] picByte,
+			boolean active, int unitsInStock, Date dateCreated, Date lastUpdated, Long shopId) {
 		super();
 		this.category = category;
-		this.sku = sku;
 		this.name = name;
 		this.description = description;
 		this.unitPrice = unitPrice;
@@ -178,6 +166,7 @@ public class Product {
 		this.lastUpdated = lastUpdated;
 		this.shopId = shopId;
 	}
+
 	
 	
 	
