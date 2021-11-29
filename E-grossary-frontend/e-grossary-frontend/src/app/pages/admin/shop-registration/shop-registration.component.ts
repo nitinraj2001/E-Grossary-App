@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ShopService } from './../../../services/shop.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +12,7 @@ export class ShopRegistrationComponent implements OnInit {
   shop:any={"name":"","address":"","email":""};
   picByte:any;
 
-  constructor(private shopService:ShopService) { }
+  constructor(private shopService:ShopService,private route:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,7 @@ export class ShopRegistrationComponent implements OnInit {
     this.shopService.registerShop(formdata).subscribe(
       (data)=>{
         console.log(data);
+        this.route.navigate(['/admin-dashboard']);
       },
       (error)=>{
         console.log(error);

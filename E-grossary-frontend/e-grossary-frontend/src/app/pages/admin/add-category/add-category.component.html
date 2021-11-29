@@ -17,11 +17,11 @@
                   <h3 class="mb-5 text-uppercase"><b style="color:red">Shop Add Category form</b></h3>
                   <form (ngSubmit)="registerCategory()" enctype="multipart/form-data">
                   <div class="form-outline mb-4">
-                    <input type="text" id="form3Example8" class="form-control form-control-lg" name="name"/>
+                    <input type="text" id="form3Example8" class="form-control form-control-lg" name="name" [(ngModel)]=category.name/>
                     <label class="form-label" for="form3Example8">Enter Category Name To Be Register</label>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="text" id="form3Example8" class="form-control form-control-lg" name="address"/>
+                    <input type="text" id="form3Example8" class="form-control form-control-lg" name="description" [(ngModel)]=category.description/>
                     <label class="form-label" for="form3Example8">Enter Description of Registered Category</label>
                   </div>
                   <div class="form-outline mb-4">

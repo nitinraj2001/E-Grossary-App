@@ -8,6 +8,7 @@ import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import com.hack.abes.productmicroservice.service.ProductCategoryService;
 
 @RestController
 @RequestMapping("/product-category")
+@CrossOrigin("*")
 public class ProductCategoryController {
 	
 	@Autowired
@@ -27,7 +29,7 @@ public class ProductCategoryController {
 	
 	
 	@PostMapping(value="/",headers = "content-type=multipart/*")
-	public ResponseEntity<?> registerShop(@RequestParam("categoryImage") MultipartFile file,@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("shopId") Long shopId) throws IOException{
+	public ResponseEntity<?> registerCategory(@RequestParam("categoryImage") MultipartFile file,@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("shopId") Long shopId) throws IOException{
 	   
 	   ProductCategory productCategory= new ProductCategory();
 	   productCategory.setShopId(shopId);
@@ -41,7 +43,7 @@ public class ProductCategoryController {
 	   }
 	   ProductCategoryResponse response=this.productCategoryService.registerProductCategory(productCategory);
 	  
-	   return ResponseEntity.ok(response.getSuccess());
+	   return ResponseEntity.ok("category is successfully added");
    }
 	
 	// compress the image bytes before storing it in the database

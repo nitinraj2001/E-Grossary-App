@@ -5,7 +5,9 @@ import java.util.List;
 import com.hack.abes.productmicroservice.model.ProductCategory;
 import com.hack.abes.productmicroservice.response.ProductCategoryResponse;
 import com.hack.abes.productmicroservice.service.ProductCategoryService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 	@Override
