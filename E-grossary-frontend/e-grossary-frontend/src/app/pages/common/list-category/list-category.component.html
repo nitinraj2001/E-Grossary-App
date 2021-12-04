@@ -1,2 +1,23 @@
-<p>list-category works!</p>
+<div *ngIf="categoryList.length<=0">No category is added in this shop.</div>
 
+<div *ngFor="let category of categoryList">
+    <mat-card>
+       <div class="div row">
+           <div class="div col-md-12">
+            <mat-card-content style="margin-top:2%;">
+                <img src="{{category.picByte}}" style="max-height: 20%;max-width: 40%;">
+              </mat-card-content>
+            <mat-card-header><b style="margin-left:10%;">{{category.categoryName}}</b></mat-card-header>
+            <mat-card-content>
+                <i><p align="justify">{{category.description}}</p></i>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary">View Products</button>
+                    <button (click)="redirectaddproduct(category.id)" mat-raised-button color="accent">Add product</button>
+                    <button mat-raised-button color="warn">Delete category</button>
+                </mat-card-actions>
+            </mat-card-content>
+           </div>
+       </div>
+    </mat-card>
+    
+</div>

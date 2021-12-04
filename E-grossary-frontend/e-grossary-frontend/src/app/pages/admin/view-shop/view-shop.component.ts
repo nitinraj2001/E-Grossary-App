@@ -1,5 +1,5 @@
 import { ShopService } from './../../../services/shop.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./view-shop.component.css']
 })
 export class ViewShopComponent implements OnInit {
-
+  
+  @Output() public shopId=new EventEmitter<any>();
   shop:any;
   id:any;
   base64Data: any;
@@ -18,6 +19,8 @@ export class ViewShopComponent implements OnInit {
 
   ngOnInit(): void {
    this.id=+this.router.snapshot.paramMap.get("id");
+   console.log("shop Id is:",this.id);
+   this.shopId.emit(this.id);
    this.getShopDetails();
   }
  

@@ -11,4 +11,8 @@ export class ProductCategoryService {
   public registerProductCategory(category:any){
     return this.http.post(`http://localhost:9091/product-category/`,category);
   }
+
+  public getAllCategoryDetails(shopId:any){
+    return this.http.get(`http://localhost:9091/product-category/getAllProductCategory/${shopId}`);
+  }
 }

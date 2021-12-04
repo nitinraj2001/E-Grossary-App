@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductCategoryService } from './../../../services/product-category.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-category',
@@ -9,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCategoryComponent implements OnInit {
 
+  @Input() shopID=1;
+
   category:any={"name":"","description":"","shopId":""};
   picByte:any;
 
   constructor(private productCategoryService:ProductCategoryService,private route: Router,private router:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log("event emitter sending value of shop id :"+this.shopID);
     this.category.shopId=1;
   }
 

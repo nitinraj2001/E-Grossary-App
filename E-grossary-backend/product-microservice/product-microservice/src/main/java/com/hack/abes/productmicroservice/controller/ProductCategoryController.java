@@ -2,6 +2,7 @@ package com.hack.abes.productmicroservice.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -9,6 +10,8 @@ import java.util.zip.Inflater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hack.abes.productmicroservice.model.ProductCategory;
+import com.hack.abes.productmicroservice.model.Shop;
 import com.hack.abes.productmicroservice.response.ProductCategoryResponse;
 import com.hack.abes.productmicroservice.service.ProductCategoryService;
 
@@ -41,10 +45,20 @@ public class ProductCategoryController {
 		   e.printStackTrace();
 		   
 	   }
-	   ProductCategoryResponse response=this.productCategoryService.registerProductCategory(productCategory);
-	  
-	   return ResponseEntity.ok("category is successfully added");
+	   this.productCategoryService.registerProductCategory(productCategory);
+	   return ResponseEntity.ok("category is added succesfully");
    }
+	
+	
+	
+	 @GetMapping("/getAllProductCategory/{id}")
+	   public ResponseEntity<?> getAllCategoryDetails(@PathVariable Long id){
+		   List<ProductCategory> allCategory=this.productCategoryService.getAllProductCategoryInShop(id);
+		   for(ProductCategory category:allCategory) {
+			   category.setPicByte(decompressBytes(category.getPicByte()));
+		   }
+		   return ResponseEntity.ok(allCategory);
+	   }
 	
 	// compress the image bytes before storing it in the database
 		public static byte[] compressBytes(byte[] data) {

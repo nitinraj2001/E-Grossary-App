@@ -44,7 +44,7 @@ public class Product {
 	private byte[] picByte;
 	
 	@Column(name="active")
-	private boolean active;
+	private boolean active=true;
 	
 	@Column(name="units_in_stock")
 	private int unitsInStock;

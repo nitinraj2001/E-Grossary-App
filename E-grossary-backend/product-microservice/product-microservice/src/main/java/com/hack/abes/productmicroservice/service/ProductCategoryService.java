@@ -10,7 +10,7 @@ import com.hack.abes.productmicroservice.response.ProductCategoryResponse;
 @Service
 public interface ProductCategoryService {
 	
-	public ProductCategoryResponse registerProductCategory(ProductCategory category );
+	public void registerProductCategory(ProductCategory category );
 	
 	public List<ProductCategory> getAllProductCategoryInShop(Long shopId);
 	

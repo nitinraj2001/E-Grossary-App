@@ -1,3 +1,4 @@
+import { AddProductComponent } from './pages/admin/add-product/add-product.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import { ListProductsComponent } from './pages/common/list-products/list-products.component';
 import { ShopRegistrationComponent } from './pages/admin/shop-registration/shop-registration.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path:'shop/:id/add-category',component:AddCategoryComponent},
     {path:'view-shop/:id',component:ViewShopComponent},
     {path:'view-products',component:ListProductsComponent},
+    {path:'add-product/:id',component:AddProductComponent},
     {path:'view-shop/:id/view-category',component:ListCategoryComponent},
 
   ]}
