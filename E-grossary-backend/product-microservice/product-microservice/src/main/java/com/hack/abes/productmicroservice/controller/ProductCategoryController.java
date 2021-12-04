@@ -2,6 +2,7 @@ package com.hack.abes.productmicroservice.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
@@ -18,15 +19,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hack.abes.productmicroservice.model.Product;
 import com.hack.abes.productmicroservice.model.ProductCategory;
-import com.hack.abes.productmicroservice.model.Shop;
-import com.hack.abes.productmicroservice.response.ProductCategoryResponse;
 import com.hack.abes.productmicroservice.service.ProductCategoryService;
+import com.hack.abes.productmicroservice.service.ProductService;
+
 
 @RestController
-@RequestMapping("/product-category")
+@RequestMapping(value="/product-category")
 @CrossOrigin("*")
 public class ProductCategoryController {
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private ProductCategoryService productCategoryService;
@@ -47,6 +52,28 @@ public class ProductCategoryController {
 	   }
 	   this.productCategoryService.registerProductCategory(productCategory);
 	   return ResponseEntity.ok("category is added succesfully");
+   }
+	
+	@PostMapping(value="/product",headers = "content-type=multipart/*")
+	public ResponseEntity<?> registerProduct(@RequestParam("productImage") MultipartFile file,@RequestParam("name") String name,@RequestParam("unitsInStock") int unitsInStock,@RequestParam("categoryId") Long categoryId,@RequestParam("description") String description,@RequestParam("unitPrice") BigDecimal unitPrice) throws IOException{
+	   System.out.println(description+" "+unitsInStock+categoryId);
+		
+	   ProductCategory productCategory=this.productCategoryService.getProductCategoryDetails(categoryId);
+	   Product product=new Product();
+	   product.setShopId(productCategory.getShopId());
+	   product.setCategory(productCategory);
+	   product.setDescription(description);
+	   product.setName(name);
+	   product.setUnitPrice(unitPrice);
+	   product.setUnitsInStock(unitsInStock);
+	   try {
+		   product.setPicByte(compressBytes(file.getBytes()));
+	   }catch(Exception e) {
+		   e.printStackTrace();
+		   
+	   }
+	   this.productService.registerProduct(product);
+	   return ResponseEntity.ok("product is added succesfully");
    }
 	
 	

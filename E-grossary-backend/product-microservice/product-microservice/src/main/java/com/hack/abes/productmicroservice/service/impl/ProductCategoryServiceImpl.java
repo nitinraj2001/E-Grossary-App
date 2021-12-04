@@ -23,13 +23,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	@Override
 	public List<ProductCategory> getAllProductCategoryInShop(Long shopId) {
 		
-		return this.categoryRepository.findAllByShopId(shopId);
+		return this.categoryRepository.findAllByshopId(shopId);
 	}
 
 	@Override
 	public ProductCategory getProductCategoryDetails(Long categoryId) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.categoryRepository.findById(categoryId).get();
 	}
 
 }

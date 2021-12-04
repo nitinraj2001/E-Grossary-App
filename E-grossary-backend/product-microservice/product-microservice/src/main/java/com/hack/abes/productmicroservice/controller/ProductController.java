@@ -10,6 +10,7 @@ import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,8 @@ import com.hack.abes.productmicroservice.service.ProductCategoryService;
 import com.hack.abes.productmicroservice.service.ProductService;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping(value="/product",produces="application/json")
+@CrossOrigin("*")
 public class ProductController {
 	
 	@Autowired
@@ -34,6 +36,7 @@ public class ProductController {
 	
 	@PostMapping(value="/",headers = "content-type=multipart/*")
 	public ResponseEntity<?> registerCategory(@RequestParam("productImage") MultipartFile file,@RequestParam("name") String name,@RequestParam("unitsInStock") int unitsInStock,@RequestParam("categoryId") Long categoryId,@RequestParam("description") String description,@RequestParam("unitPrice") BigDecimal unitPrice) throws IOException{
+	   System.out.println(description+" "+unitsInStock);
 		
 	   ProductCategory productCategory=this.productCategoryService.getProductCategoryDetails(categoryId);
 	   Product product=new Product();

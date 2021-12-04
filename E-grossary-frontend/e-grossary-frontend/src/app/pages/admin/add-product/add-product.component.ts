@@ -16,7 +16,7 @@ export class AddProductComponent implements OnInit {
   constructor(private router:ActivatedRoute,private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.categoryId=+this.router.params['id'];
+    this.categoryId=+this.router.snapshot.paramMap.get('id');
     console.log("categoryId is:"+this.categoryId);
   }
 
@@ -32,10 +32,12 @@ export class AddProductComponent implements OnInit {
     formdata.append("description",this.product.description);
     formdata.append("unitPrice",this.product.unitPrice);
     formdata.append("unitsInStock",this.product.unitsInStock);
-    formdata.append("categoryImage",this.picByte);
-    this.productService.registerProduct(this.product).subscribe(
+    formdata.append("productImage",this.picByte);
+    console.log(formdata);
+    this.productService.registerProduct(formdata).subscribe(
       (data)=>{
         console.log(data);
+        
       },
       (error)=>{
         console.log(error);

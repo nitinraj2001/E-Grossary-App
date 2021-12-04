@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="product")
@@ -27,6 +29,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name="category_id", nullable=false)
+	@JsonIgnore
 	private ProductCategory category;
 	
 	@Column(name="name")

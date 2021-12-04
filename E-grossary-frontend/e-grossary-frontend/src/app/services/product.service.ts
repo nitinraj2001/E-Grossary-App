@@ -9,7 +9,7 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   public registerProduct(product:any){
-    return this.http.post(`http://localhost:9091/product/`,product);
+    return this.http.post(`http://localhost:9091/product-category/product`,product);
   }
 
   public getAllProductDetails(){

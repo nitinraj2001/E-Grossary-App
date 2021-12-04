@@ -11,7 +11,7 @@
             <mat-card-content>
                 <i><p align="justify">{{category.description}}</p></i>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary">View Products</button>
+                    <button (click)="redirectViewProducts()" mat-raised-button color="primary">View Products</button>
                     <button (click)="redirectaddproduct(category.id)" mat-raised-button color="accent">Add product</button>
                     <button mat-raised-button color="warn">Delete category</button>
                 </mat-card-actions>

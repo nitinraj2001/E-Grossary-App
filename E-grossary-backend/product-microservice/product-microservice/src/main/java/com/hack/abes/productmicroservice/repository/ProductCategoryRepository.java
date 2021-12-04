@@ -10,5 +10,5 @@ import com.hack.abes.productmicroservice.model.ProductCategory;
 @Repository
 public interface ProductCategoryRepository  extends JpaRepository<ProductCategory, Long> {
 
-	public List<ProductCategory> findAllByShopId(Long shopId);
+	public List<ProductCategory> findAllByshopId(Long shopId);
 }

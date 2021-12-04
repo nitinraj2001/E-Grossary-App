@@ -47,6 +47,10 @@ export class ListCategoryComponent implements OnInit {
      this.route.navigate([`/admin-dashboard/add-product/${categoryId}`]);
   }
 
+  redirectViewProducts(){
+    this.route.navigate([`/admin-dashboard/view-products`]);
+  }
+
 
 
 
