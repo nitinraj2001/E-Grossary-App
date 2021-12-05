@@ -1,6 +1,9 @@
+import { Product } from './../../../interface/product';
+import { CartItem } from './../../../interface/cart-item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,12 +15,13 @@ export class ProductDetailsComponent implements OnInit {
   productId:any;
   base64Data: any;
   retrievedImage: string;
+  cartItem:CartItem;
 
   product:any={"id":"","name":"","category":"","description":"","unitPrice":"","unitsInStock":"","picByte":""};
 
  
 
-  constructor(private productService:ProductService,private router:ActivatedRoute,private route:Router) { }
+  constructor(private productService:ProductService,private cartService:CartService,private router:ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
     this.productId=+this.router.snapshot.paramMap.get('id');
@@ -43,6 +47,15 @@ export class ProductDetailsComponent implements OnInit {
   redirectViewProducts(){
     this.route.navigate([`/user-dashboard/view-products`])
   }
+
+  addToCartInProductDetails(){
+    console.log(`product name: ${this.product.name} added to your cart it will cost u ${this.product.unitPrice}`);
+    this.cartItem=new CartItem(this.product);
+    console.log(this.cartItem);
+    this.cartService.addToCart(this.cartItem);
+    console.log("item is added in cart");
+ }
+
 
 
 

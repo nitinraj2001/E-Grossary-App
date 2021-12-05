@@ -5,11 +5,7 @@
 </a>
    <span><button mat-raised-button color="primary" routerLink="/home"> My Super Market App</button></span>
    <span class="example-spacer"></span>
-   <div class="input-group" style="max-width: 50%; margin-right: 21%;">
-    <input type="search" class="form-control rounded" placeholder="Search your products here " aria-label="Search"
-      aria-describedby="search-addon" />
-    <button type="button" mat-raised-button color="accent" style="margin-left:3%">search</button>
-  </div>
+   <app-search></app-search>
    <a *ngIf="!loggedInStatus" routerLink="/register" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" style="margin-right: 4%;">
      Register
    </a>

@@ -1,5 +1,5 @@
-<div routerLink="/cart-details" class="btn btn-warning custom-btn font-weight-bold" style="margin-left: 100px;">
-    {{0 |currency:'USD'}}
-    &nbsp;<span class="badge badge-light mt-1">{{0}}</span>
+<button (click)="redirectCartDetails()" class="btn btn-warning custom-btn font-weight-bold" style="margin-left: 100px;">
+    {{totalPrice|currency:'USD'}}
+    &nbsp;<span class="badge badge-light mt-1">{{totalQuantity}}</span>
     &nbsp;<i class="fa fa-cart-arrow-down text-white"></i>
-</div>
+</button>

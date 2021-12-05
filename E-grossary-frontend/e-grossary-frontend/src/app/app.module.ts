@@ -30,6 +30,8 @@ import { AddProductComponent } from './pages/admin/add-product/add-product.compo
 import { UserViewShopComponent } from './pages/user/user-view-shop/user-view-shop.component';
 import { UserViewCategoryComponent } from './pages/user/user-view-category/user-view-category.component';
 import { ProductDetailsComponent } from './pages/user/product-details/product-details.component';
+import { SearchComponent } from './components/search/search.component';
+import { CartDetailsComponent } from './pages/user/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { ProductDetailsComponent } from './pages/user/product-details/product-de
     UserViewShopComponent,
     UserViewCategoryComponent,
     ProductDetailsComponent,
+    SearchComponent,
+    CartDetailsComponent,
   ],
   imports: [
     BrowserModule,

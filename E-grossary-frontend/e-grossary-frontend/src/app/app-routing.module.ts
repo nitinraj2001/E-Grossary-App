@@ -1,3 +1,4 @@
+import { CartDetailsComponent } from './pages/user/cart-details/cart-details.component';
 import { ProductDetailsComponent } from './pages/user/product-details/product-details.component';
 import { UserViewCategoryComponent } from './pages/user/user-view-category/user-view-category.component';
 import { UserViewShopComponent } from './pages/user/user-view-shop/user-view-shop.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path:'view-shop/:id',component:UserViewShopComponent},
     {path:'view-shop/view-category/:id',component:UserViewCategoryComponent},
     {path:'view-products',component:ListProductsComponent},
+    {path:'cart-details',component:CartDetailsComponent},
     {path:'product-details/:id',component:ProductDetailsComponent},
   ]},
   {path:'admin-dashboard',component:AdmindashboardComponent,children:[
