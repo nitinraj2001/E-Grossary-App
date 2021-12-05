@@ -15,4 +15,8 @@ export class ProductService {
   public getAllProductDetails(){
     return this.http.get(`http://localhost:9091/product/getAllProducts`);
   }
+
+  public getProductDetails(productId:any){
+    return this.http.get(`http://localhost:9091/product/getProductDetails/${productId}`);
+  }
 }

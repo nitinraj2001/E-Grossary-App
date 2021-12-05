@@ -1,1 +1,24 @@
-<p>No products registered yet..</p>
+<div class="main-content" style="margin-top:-5%;">
+    <p><i><b>list of products in my super market!!!</b></i>
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">'
+                <div *ngFor="let product of products" class="col-md-3">
+                    <div class="product-box">
+                            <img src="{{product.picByte}}" class="img-responsive" style="max-width:100%;background-size:cover;display:flex;">
+                        <h2><i style="color:blue;">{{product.name}}</i></h2>
+                        <div class="price"><b>{{product.unitPrice|currency:"USD"}}</b></div>
+                        <p class="card-text text-truncate" style="color:red">{{product.description}}</p>
+                        <button (click)="redirectProductDetail(product.id)" style="margin-left:3%" mat-raised-button color="warn" >View Product</button>
+                    </div>
+                </div>
+                <div *ngIf="products?.length==0">
+                    <p style="color:darkred" align="center">No products Found. Enter valid keywords inorder to search products and try again in order to effecticently use search functionality</p>
+                </div>
+            
+            </div>
+
+           
+        </div>
+    </div>
+</div>

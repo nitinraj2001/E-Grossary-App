@@ -27,6 +27,9 @@ import { ListCategoryComponent } from './pages/common/list-category/list-categor
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import {MatTableModule} from '@angular/material/table';
 import { AddProductComponent } from './pages/admin/add-product/add-product.component';
+import { UserViewShopComponent } from './pages/user/user-view-shop/user-view-shop.component';
+import { UserViewCategoryComponent } from './pages/user/user-view-category/user-view-category.component';
+import { ProductDetailsComponent } from './pages/user/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { AddProductComponent } from './pages/admin/add-product/add-product.compo
     ListCategoryComponent,
     AddCategoryComponent,
     AddProductComponent,
+    UserViewShopComponent,
+    UserViewCategoryComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

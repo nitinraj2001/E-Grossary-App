@@ -49,4 +49,18 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
+	@Override
+	public Product getProductDetail(Long productId) {
+	    Product product= this.productRepository.findById(productId).get();
+	    if(product==null) {
+	    	try {
+				throw new ProductNotFoundException(productId);
+			} catch (ProductNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
+		return product;
+	}
+
 }

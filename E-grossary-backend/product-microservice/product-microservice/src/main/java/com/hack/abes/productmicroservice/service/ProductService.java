@@ -15,6 +15,8 @@ public interface ProductService {
 	
 	public void deleteProduct(Long productId);
 	
+	public Product getProductDetail(Long productId);
+	
 	public List<Product> getAllProductByShopId(Long shopId);
 
 }
