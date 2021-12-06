@@ -1,6 +1,7 @@
 package com.hack.abes.productmicroservice.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,6 +9,16 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -71,6 +82,32 @@ public class ProductController {
     	   Product product=this.productService.getProductDetail(productId);
     	   product.setPicByte(decompressBytes(product.getPicByte()));
     	   return product;
+       }
+       
+       //get all recommended products
+       @GetMapping("recommendations")
+       public List<RecommendedItem> getRecommendedProducts(){
+    	   List<RecommendedItem> recommendations=null;
+    	   try {
+			DataModel datamodel = new FileDataModel(new File("F:\\nitinraj document\\data-analytic-files\\gapminder-FiveYearData.csv"));
+			UserSimilarity similarity = new PearsonCorrelationSimilarity(datamodel);
+			UserNeighborhood neighborhood = new ThresholdUserNeighborhood(3.0, similarity, datamodel);
+			UserBasedRecommender recommender = new GenericUserBasedRecommender(datamodel, neighborhood, similarity);
+			recommendations = recommender.recommend(5, 1);
+			System.out.println(recommendations+" "+recommender+" "+recommender.recommend(5,2));
+
+			for (RecommendedItem recommendation : recommendations) {
+				System.out.println("recommendated items are"+recommendation);
+			   System.out.println(recommendation);
+			 }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TasteException e) {
+			// TODO Auto-generated catch blocks
+			e.printStackTrace();
+		}
+    	   return recommendations;
        }
 	
 	// compress the image bytes before storing it in the database
