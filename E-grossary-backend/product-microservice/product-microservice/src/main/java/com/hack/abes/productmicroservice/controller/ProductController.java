@@ -85,7 +85,7 @@ public class ProductController {
        }
        
        //get all recommended products
-       @GetMapping("recommendations")
+       @GetMapping("/recommendations")
        public List<RecommendedItem> getRecommendedProducts(){
     	   List<RecommendedItem> recommendations=null;
     	   try {

@@ -32,6 +32,8 @@ import { UserViewCategoryComponent } from './pages/user/user-view-category/user-
 import { ProductDetailsComponent } from './pages/user/product-details/product-details.component';
 import { SearchComponent } from './components/search/search.component';
 import { CartDetailsComponent } from './pages/user/cart-details/cart-details.component';
+import { AdminProductDetailsComponent } from './pages/admin/admin-product-details/admin-product-details.component';
+import { UserViewProductsComponent } from './pages/user/user-view-products/user-view-products.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { CartDetailsComponent } from './pages/user/cart-details/cart-details.com
     ProductDetailsComponent,
     SearchComponent,
     CartDetailsComponent,
+    AdminProductDetailsComponent,
+    UserViewProductsComponent,
   ],
   imports: [
     BrowserModule,

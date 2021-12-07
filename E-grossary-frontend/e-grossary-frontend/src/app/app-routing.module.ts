@@ -1,3 +1,5 @@
+import { UserViewProductsComponent } from './pages/user/user-view-products/user-view-products.component';
+import { AdminProductDetailsComponent } from './pages/admin/admin-product-details/admin-product-details.component';
 import { CartDetailsComponent } from './pages/user/cart-details/cart-details.component';
 import { ProductDetailsComponent } from './pages/user/product-details/product-details.component';
 import { UserViewCategoryComponent } from './pages/user/user-view-category/user-view-category.component';
@@ -21,10 +23,10 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent,pathMatch:'full'},
   {path:'login',component:LoginComponent,pathMatch:'full'},
   {path:'user-dashboard',component:UserdashboardComponent,children:[
-    {path:'',component:ListProductsComponent},
+    {path:'',component:UserViewProductsComponent},
     {path:'view-shop/:id',component:UserViewShopComponent},
     {path:'view-shop/view-category/:id',component:UserViewCategoryComponent},
-    {path:'view-products',component:ListProductsComponent},
+    
     {path:'cart-details',component:CartDetailsComponent},
     {path:'product-details/:id',component:ProductDetailsComponent},
   ]},
@@ -35,6 +37,7 @@ const routes: Routes = [
     {path:'view-products',component:ListProductsComponent},
     {path:'add-product/:id',component:AddProductComponent},
     {path:'view-shop/:id/view-category',component:ListCategoryComponent},
+    {path:'product-details/:id',component:AdminProductDetailsComponent},
 
   ]}
 ];

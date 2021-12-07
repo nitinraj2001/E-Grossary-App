@@ -1,13 +1,13 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from './../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-list-products',
-  templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  selector: 'app-user-view-products',
+  templateUrl: './user-view-products.component.html',
+  styleUrls: ['./user-view-products.component.css']
 })
-export class ListProductsComponent implements OnInit {
+export class UserViewProductsComponent implements OnInit {
 
   products:any=[];
 
@@ -40,7 +40,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   redirectProductDetail(id:any){
-    this.route.navigate([`/admin-dashboard/product-details/${id}`]);
+    this.route.navigate([`/user-dashboard/product-details/${id}`]);
   }
 
 
